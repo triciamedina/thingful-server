@@ -44,13 +44,15 @@ async function checkThingExists(req, res, next) {
       req.params.thing_id
     )
 
-    if (!thing)
+    if (!thing) {
       return res.status(404).json({
         error: `Thing doesn't exist`
       })
+    }
 
     res.thing = thing
     next()
+  
   } catch (error) {
     next(error)
   }
